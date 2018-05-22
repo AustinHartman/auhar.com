@@ -1,0 +1,4 @@
+headerbar:
+  - { url: '/', text: 'home'}
+  - { url: '/posts', text: 'posts'}
+  - { url: '/about', text: 'about'}

@@ -1,0 +1,11 @@
+<header class="site-header" role="banner">
+  <div class="wrapper">
+    <ul id="navbar">
+      {% for item in site.data.navigation.headerbar %}
+        <li>
+          <a href="{{ item.url }}">{{ item.text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</header>
