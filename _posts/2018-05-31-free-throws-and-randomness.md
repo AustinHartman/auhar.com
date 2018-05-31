@@ -9,21 +9,21 @@ statistics, sports contain much more randomness than most sports fans
 would be comfortable with. A paper published in [1985][hothand-link] claimed the idea a 
 player has a hot hand is simply a fallacy. The mind misinterprets these
 occurences because our mind is trained to find patterns. When watching sports or going through life, 
-it is common for a to come up with stories to explain events that are 
+it is common for to come up with stories to explain events that are 
 inherently random. Claiming that a player ‘is on fire’ seems to just be 
 another example of this. Our minds are biased towards looking for 
 streaks, and random events can very often appear to show a streak. 
 
 Let me propose an example. Below is the chart of a hypothetical stock coming
 from a program randomly simulating stocks. This picture comes from a simulation 
-where the stock begins the year at a value of 100$ and each day its value 
+where the stock begins the year at a value of $100 and each day its value 
 will go up or down randomly (it is just as likely to go up as it is 
 down) between 0 and 2 dollars. Of course some simulations of this will 
 show shocks that shoot down, most will stay near $100 but some can seem 
 to follow a steep upward trend. Is there any information that one could 
 gain from this chart to make an informed decision about whether or not 
 to purchase this stock? Absolutely not. The chart is completely 
-misleading. This stock is no more likely to increase than another 
+misleading. This stock is no more likely to increase the following year than another 
 simulation under the same conditions which ended up at $50 after one 
 year. This is an example of how a trend or a perceived pattern seems 
 to give a powerful indication of what will come in the future, and 
@@ -56,8 +56,8 @@ pointers, three mid range jump shots, and a half court heave at the end
 of the half. Clearly, each of those shots have different likelihoods of 
 going in. There is no way both the dunk and the half court heave have
 exactly the same 45% chance of going in or even remotely similar chances
-of going in. It would be a lot harder to know if a player 
-is shooting a better percentage when the degree of difficulty (changes 
+at that. It would be a lot harder to know if a player 
+is shooting a better percentage when the degree of difficulty (which changes 
 based on shot distance, defense, balance of the shooter etc.) of the 
 players' shots are never 
 constant. But with free throws, I feel confident in assuming that the 
