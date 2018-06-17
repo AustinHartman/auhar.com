@@ -10,7 +10,7 @@ about sports mostly from a statistical perspective.
 
 This site was created using [jekyll][jekyll-site] and is hosted for 
 free on [netlify][netlify-site]. [Netlify][netlify-site] allows users 
-to continuosly update their static sites via a git repository. You can 
+to continuously update their static sites via a git repository. You can 
 find the repository for this site [here][git-repo].
 
 
