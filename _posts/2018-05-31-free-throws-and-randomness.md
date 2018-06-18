@@ -90,9 +90,9 @@ Here are my findings:
 |FT %: shot after make|79.6% | 205,078|
 |FT %: shot after miss|73.3% |72,961 |
 
-Clearly, there is some difference here. I know I should run P-tests to 
+Clearly, there is some difference here. I know I should check P-values to 
 verify that these differences are not random but because of the large
-sample sizes I'm confident these results are not random. 
+sample sizes I'm confident these results are not random when tested against a reasonable significance level. 
 However, that  does not necessarily say much
 about the validity of the hot hand. When fans mention the hot hand,
 it usually does not have anything to do with free throws. At the very least,
