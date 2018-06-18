@@ -1,24 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-31T14:05:31-07:00</updated><id>http://localhost:4000/</id><title type="html">austin hartman</title><author><name>Austin Hartman</name></author><entry><title type="html">basketball free throws, randomness, and the hot hand</title><link href="http://localhost:4000/2018/05/31/free-throws-and-randomness.html" rel="alternate" type="text/html" title="basketball free throws, randomness, and the hot hand" /><published>2018-05-31T00:00:00-07:00</published><updated>2018-05-31T00:00:00-07:00</updated><id>http://localhost:4000/2018/05/31/free-throws-and-randomness</id><content type="html" xml:base="http://localhost:4000/2018/05/31/free-throws-and-randomness.html">&lt;p&gt;For most sports fans the idea that a player is ‘on a roll’, or is ‘due 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-06-18T10:28:16-07:00</updated><id>http://localhost:4000/</id><title type="html">austin hartman</title><author><name>Austin Hartman</name></author><entry><title type="html">More on the hot hand</title><link href="http://localhost:4000/2018/06/18/more-on-the-hot-hand.html" rel="alternate" type="text/html" title="More on the hot hand" /><published>2018-06-18T00:00:00-07:00</published><updated>2018-06-18T00:00:00-07:00</updated><id>http://localhost:4000/2018/06/18/more-on-the-hot-hand</id><content type="html" xml:base="http://localhost:4000/2018/06/18/more-on-the-hot-hand.html">&lt;p&gt;In the initial article for this project I tried to find any evidence for 
+or against the hot hand fallacy by analyzing free throws. Those findings 
+indicated some evidence for the hot hand. The analysis showed that after 
+making the first free throw, the following free throw had a 
+significantly better than average chance of going in. The first article 
+can be read &lt;a href=&quot;http://www.auhar.com/2018/05/31/free-throws-and-randomness.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After the free throw analysis I have decided to consider an analysis of 
+in game shots.&lt;/p&gt;
+
+&lt;p&gt;The first approach I thought of was very simple. I wanted to see how a players shooting 
+percentage composed of shots after a make differed from their overall 
+shooting percentage (similar to FT approach). Essentially, if a player makes a shot, could the 
+player now ‘be on a roll.’ Of course, not every time a player makes a 
+shot would fans consider them to be on fire, but this approach still 
+seems that it could detect hot streaks if they really do exist. However, 
+I also have to consider how a players’ approach could change after making 
+a shot. It is certainly possible that after a player makes a shot, their 
+heightened confidence would lead to them taking more difficult shots 
+that they otherwise would be less likely to take. So this makes 
+calculations a whole lot more difficult. With free throws, I could just 
+look at shooting percentages before and after a make because the 
+distance and the defence (because there is none) for the shot remain constant. If 
+the shooting percentage after a make is higher, that gives a pretty good 
+indication there is some sort of effect going on. However, with in game 
+shots it is possible that a player has a higher shot making ability 
+after making a shot, but his shooting percentage after a make is lower 
+than his overall shooting percentage because the shots he attempted 
+after the make were more difficult. This is why free throws were nice.&lt;/p&gt;
+
+&lt;p&gt;So, to detect the hot hand for in game shots,  I will have to determine 
+the difficulty of each shot taken. If the player performs better than 
+the predicted difficulty after a make than when he typically shoots, 
+then that would be very convincing evidence for the hot hand. The thing 
+is, the only attribute in my dataset that would help indicate the shot 
+difficulty is the distance of the shot. Typically, a longer shot is more 
+difficult. To demonstrate this, I graphed the shooting percentages of 
+all the shots in an NBA season from different distances below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/13-14.png&quot; alt=&quot;stock&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As expected, there is a downward trend as the distance increases. To my 
+surprise, shooting percentage essentially plateaus at 40% from 5 to 20 
+feet. If I had more data I might be able to decide why that is. Perhaps 
+defenders defend more closely at 5 feet than they do at 20 feet which 
+balances out the difficulty due to higher distance. I also created 
+graphs for many other seasons as well, and the shape of the graph was 
+approximately the same each season. The other charts can be found 
+&lt;a href=&quot;https://github.com/AustinHartman/stats_scraper/tree/master/charts/shooting%20percentage%20vs%20dist&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So at the very least I could test this as an indicator of shot 
+difficulty. Unfortunately, the lack of other information really makes it 
+difficult to estimate the difficulty of a given shot. It would be 
+helpful to know where the nearest defender was when the shot was taken. 
+Was the shooter fully contested or wide open? It’d also be helpful to 
+know the time on the shot clock. It is common to see a player throw up 
+a prayer in the last few seconds of the shot clock, so knowing a shot 
+was taken at the end of the shot clock often means it was a shot with a 
+very low chance of going in. Obviously, there are plenty of factors that 
+determine the difficulty of a shot but some of the factors are difficult 
+to quantify and/or I have not found them.&lt;/p&gt;
+
+&lt;p&gt;Because I do not have the detailed data I feel would be necessary to 
+find significant statistical evidence for or against the hot hand, I 
+will perform an analysis similar to what I did with free throws. 
+However, this time I am going to do the analysis on a player by player 
+basis. The reason for this is I only want to choose players who are 
+taking shots regularly throughout the game. In other words, I would 
+rather do this analysis on Lebron James than a role player like Cedi 
+Osman. If a player shoots once in the first quarter and makes it and 
+then takes his second shot of the game in the third quarter and makes 
+it, nobody will assume his ability to make the shot was enhanced by his 
+hot hand due to his shot made over an hour earlier. The idea is that the 
+hot hand is temporary and that is why I want to only analyze players who 
+will regularly be attempting shots.&lt;/p&gt;
+
+&lt;p&gt;Below I graphed residuals of many top offensive players during the 
+2014-2015 NBA season (I chose this season simply because this was the 
+data I had available). Each residual point on the graph represents the 
+difference between overall shooting percentage and shooting percentage when the 
+previous shot was made.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/residuals.png&quot; alt=&quot;stock&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The graph shows that top players typically shoot a lower percentage 
+after a make. The best explanation I have for this is top players 
+attempt more ambitious shots after making a shot. So in the end, based 
+on this data, I do not have enough evidence to comment specifically on 
+the hot hand fallacy. However, I can say that many high volume shooters 
+see a drop in shooting percentage after a make, but that does not mean 
+their shot making ability drops after a make. Most 
+likely this drop is due to players attempting more difficult shots after 
+a make.&lt;/p&gt;</content><author><name>Austin Hartman</name></author><summary type="html">In the initial article for this project I tried to find any evidence for or against the hot hand fallacy by analyzing free throws. Those findings indicated some evidence for the hot hand. The analysis showed that after making the first free throw, the following free throw had a significantly better than average chance of going in. The first article can be read here.</summary></entry><entry><title type="html">basketball free throws, randomness, and the hot hand</title><link href="http://localhost:4000/2018/05/31/free-throws-and-randomness.html" rel="alternate" type="text/html" title="basketball free throws, randomness, and the hot hand" /><published>2018-05-31T00:00:00-07:00</published><updated>2018-05-31T00:00:00-07:00</updated><id>http://localhost:4000/2018/05/31/free-throws-and-randomness</id><content type="html" xml:base="http://localhost:4000/2018/05/31/free-throws-and-randomness.html">&lt;p&gt;For most sports fans the idea that a player is ‘on a roll’, or is ‘due 
 to hit a shot’ is almost second nature. However, according to the 
 statistics, sports contain much more randomness than most sports fans 
 would be comfortable with. A paper published in &lt;a href=&quot;https://en.wikipedia.org/wiki/Hot-hand_fallacy#1985_%22Hot_Hand_in_Basketball%22_paper&quot;&gt;1985&lt;/a&gt; claimed the idea a 
 player has a hot hand is simply a fallacy. The mind misinterprets these
 occurences because our mind is trained to find patterns. When watching sports or going through life, 
-it is common for a to come up with stories to explain events that are 
+it is common for to come up with stories to explain events that are 
 inherently random. Claiming that a player ‘is on fire’ seems to just be 
 another example of this. Our minds are biased towards looking for 
 streaks, and random events can very often appear to show a streak.&lt;/p&gt;
 
 &lt;p&gt;Let me propose an example. Below is the chart of a hypothetical stock coming
 from a program randomly simulating stocks. This picture comes from a simulation 
-where the stock begins the year at a value of 100$ and each day its value 
+where the stock begins the year at a value of $100 and each day its value 
 will go up or down randomly (it is just as likely to go up as it is 
 down) between 0 and 2 dollars. Of course some simulations of this will 
 show shocks that shoot down, most will stay near $100 but some can seem 
 to follow a steep upward trend. Is there any information that one could 
 gain from this chart to make an informed decision about whether or not 
 to purchase this stock? Absolutely not. The chart is completely 
-misleading. This stock is no more likely to increase than another 
+misleading. This stock is no more likely to increase the following year than another 
 simulation under the same conditions which ended up at $50 after one 
 year. This is an example of how a trend or a perceived pattern seems 
 to give a powerful indication of what will come in the future, and 
@@ -51,8 +143,8 @@ pointers, three mid range jump shots, and a half court heave at the end
 of the half. Clearly, each of those shots have different likelihoods of 
 going in. There is no way both the dunk and the half court heave have
 exactly the same 45% chance of going in or even remotely similar chances
-of going in. It would be a lot harder to know if a player 
-is shooting a better percentage when the degree of difficulty (changes 
+at that. It would be a lot harder to know if a player 
+is shooting a better percentage when the degree of difficulty (which changes 
 based on shot distance, defense, balance of the shooter etc.) of the 
 players’ shots are never 
 constant. But with free throws, I feel confident in assuming that the 
@@ -125,4 +217,4 @@ Still, the effects certainly matter and are very encouraging.&lt;/p&gt;
 and I’ll see if I can back up my findings here.&lt;/p&gt;
 
 &lt;p&gt;If you have any questions, comments, or ideas about where to go next,
-please email me at the address found at the bottom of this site.&lt;/p&gt;</content><author><name>Austin Hartman</name></author><summary type="html">For most sports fans the idea that a player is ‘on a roll’, or is ‘due to hit a shot’ is almost second nature. However, according to the statistics, sports contain much more randomness than most sports fans would be comfortable with. A paper published in 1985 claimed the idea a player has a hot hand is simply a fallacy. The mind misinterprets these occurences because our mind is trained to find patterns. When watching sports or going through life, it is common for a to come up with stories to explain events that are inherently random. Claiming that a player ‘is on fire’ seems to just be another example of this. Our minds are biased towards looking for streaks, and random events can very often appear to show a streak.</summary></entry></feed>
+please email me at the address found at the bottom of this site.&lt;/p&gt;</content><author><name>Austin Hartman</name></author><summary type="html">For most sports fans the idea that a player is ‘on a roll’, or is ‘due to hit a shot’ is almost second nature. However, according to the statistics, sports contain much more randomness than most sports fans would be comfortable with. A paper published in 1985 claimed the idea a player has a hot hand is simply a fallacy. The mind misinterprets these occurences because our mind is trained to find patterns. When watching sports or going through life, it is common for to come up with stories to explain events that are inherently random. Claiming that a player ‘is on fire’ seems to just be another example of this. Our minds are biased towards looking for streaks, and random events can very often appear to show a streak.</summary></entry></feed>
