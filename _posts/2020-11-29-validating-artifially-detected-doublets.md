@@ -47,24 +47,24 @@ doublets while the validation method detected 168 doublets. The
 intersection of these sets of barcodes was 117. I found this to be much
 higher than I had expected, and I suppose that’s a good thing.
 
-The image below reiterates the overlap between the two methods of doublet
-detection. There seems to be one main region in the top left (cloud of red)
+The image below depicts the overlap between the two methods of doublet
+detection. There seems to be one main region in the top left (cloud of red) of both UMAPs
 which both methods classify as full of doublets. Around UMAP 1 coordinate 7 and 
 UMAP 2 coordinate 2 there are a couple small clusters with a few cell
 barcodes sprinkled in between. Scrublet labels some of them as doublets
-but the validation method does not. I think this brings up an important 
+but the validation method does not. This brings up an important 
 limitation in the validation method. Because doublets are detected based
-on the presence of a TCR and BCR contig, only T cell and B cell can be
+on the presence of a TCR and BCR contig, only T cell and B cell multiplets can be
 detected. This also raises important questions about what the expected 
 upper limit for overlap between the two methods putative doublets is,
-since it must be below one. According to [Biolegend][biolegend-cellfreq-link], the expected cell frequencies for PBMCs are
+since it must be below one if the dataset contains cells other than B cells and T cells. According to [Biolegend][biolegend-cellfreq-link], the expected cell frequencies for human PBMCs are
 60-80% T cells and 5-15% B cells with natural killer cells, monocytes,
-and dendritic cells making up the remaining population. Given melanoma
-datasets are less common than PBMCs and possibly more variable, I'd like
-to redo this analysis on a more common sample such as PBMCs. This would
-allow further confidence in validation because when the underlying cell
-frequencies are known, the hypothetical upper bound on putative doublet 
-across methods can be better compared. 
+and dendritic cells making up the remaining population. Given that this 
+sample is from a melanoma and such samples are less ubiquitous, the 
+cell type frequencies are less clear. I'd like to 
+redo this analysis on PBMCs because it will better validate the Srublet
+method. I could use cell type frequencies to estimate the upper bound for
+the overlap between the Scrublet and TCR-BCR doublets.
 
 ![doublets](/assets/scrublet-vs-tcrbcr-doublets.png)
 
