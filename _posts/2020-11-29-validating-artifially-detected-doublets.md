@@ -1,5 +1,5 @@
 ---
-title: "Are doublets detected via similarity to artificial doublets valid?"
+title: "How valid are doublets detected via similarity to artificial doublets?"
 layout: post
 ---
 
