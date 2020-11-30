@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Are doublets detected via similarity to artificial doublets valid? | austin hartman</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Are doublets detected via similarity to artificial doublets valid?" />
+<meta name="author" content="Austin Hartman" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this post I’m going to briefly explore the validity of a specific type of doublet detection method, by assessing the validity of putative doublets by a mode not explored in the method’s paper. The method of doublet detection I am curious about are doublets detected based on similarity to artificially generated doublets. Multiple variants of this method have been published. For now, I am going to focus on one method called Scrublet. (Scrublet, DoubletFinder)" />
+<meta property="og:description" content="In this post I’m going to briefly explore the validity of a specific type of doublet detection method, by assessing the validity of putative doublets by a mode not explored in the method’s paper. The method of doublet detection I am curious about are doublets detected based on similarity to artificially generated doublets. Multiple variants of this method have been published. For now, I am going to focus on one method called Scrublet. (Scrublet, DoubletFinder)" />
+<link rel="canonical" href="http://localhost:4000/2020/11/29/validating-artifially-detected-doublets.html" />
+<meta property="og:url" content="http://localhost:4000/2020/11/29/validating-artifially-detected-doublets.html" />
+<meta property="og:site_name" content="austin hartman" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-29T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Are doublets detected via similarity to artificial doublets valid?" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/11/29/validating-artifially-detected-doublets.html"},"url":"http://localhost:4000/2020/11/29/validating-artifially-detected-doublets.html","author":{"@type":"Person","name":"Austin Hartman"},"headline":"Are doublets detected via similarity to artificial doublets valid?","dateModified":"2020-11-29T00:00:00-08:00","datePublished":"2020-11-29T00:00:00-08:00","description":"In this post I’m going to briefly explore the validity of a specific type of doublet detection method, by assessing the validity of putative doublets by a mode not explored in the method’s paper. The method of doublet detection I am curious about are doublets detected based on similarity to artificially generated doublets. Multiple variants of this method have been published. For now, I am going to focus on one method called Scrublet. (Scrublet, DoubletFinder)","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="austin hartman" /></head>
+<body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <ul id="navbar">
+      
+        <li>
+          <a href="/">home</a>
+        </li>
+      
+        <li>
+          <a href="/posts">posts</a>
+        </li>
+      
+        <li>
+          <a href="/about">about</a>
+        </li>
+      
+    </ul>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Are doublets detected via similarity to artificial doublets valid?</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-11-29T00:00:00-08:00" itemprop="datePublished">Nov 29, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In this post I’m going to briefly explore the validity of a specific 
+type of doublet detection method, by assessing the validity of putative 
+doublets by a mode not explored in the method’s <a href="https://doi.org/10.1016/j.cels.2018.11.005">paper</a>. The method 
+of doublet detection I am curious about are doublets detected based 
+on similarity to artificially generated doublets. Multiple variants of
+this method have been published. For now, I am going to focus on one 
+method called Scrublet. (<a href="https://doi.org/10.1016/j.cels.2018.11.005">Scrublet</a>, <a href="https://doi.org/10.1016/j.cels.2019.03.003">DoubletFinder</a>)</p>
+
+<h3 id="detecting-doublets-by-doublet-simulation">Detecting doublets by doublet simulation:</h3>
+<p>This method is quite simple. Select random pairs of cell barcodes from
+an experiment. Then generate an artificial profile from those cell
+barcodes by combining the counts from one cell barcode and the count 
+from the other. (Scrublet allows for subsampling of the UMIs from the
+artificially generated doublets, but by default there is no UMI
+subsampling. UMI subsampling may be useful since creating artificial
+doublets without subsampling could introduce bias towards high UMI cell
+barcodes.) This new profile represents a single simulated doublet. This
+process is repeated enough times to span the possible combinations of
+cell doublets. For example, if there are 5 clusters representing 5 unique
+cell types, it would be important to generate artificial doublets
+arising from each possible cluster pairing. That way, the artificial
+doublets will iterate all possible combinations of doublets arising from
+droplets with different cell types. Once artificial doublets are
+generated the next step is to identify the cell barcodes which are most
+similar to the artificial profiles. When viewing these doublets in a
+low-dimensional projection, they usually appear as an intermediate
+cluster between two clusters.</p>
+
+<h3 id="detecting-doublets-by-tcr-and-bcr-sequence-presence">Detecting doublets by TCR and BCR sequence presence:</h3>
+<p>This method assumes that the presence of a TCR and BCR sequence for a
+given barcode is not biologically reasonable. Thus, if a TCR and BCR
+library identify sequences each with the same barcode, then it indicates
+something went wrong and such barcodes should be removed. These barcodes
+are the barcodes which are found in the BCR filtered contigs and the
+TCR filtered contigs.</p>
+
+<h3 id="dataset-and-results">Dataset and results</h3>
+<p>Using <a href="https://support.10xgenomics.com/single-cell-vdj/datasets/4.0.0/sc5p_v2_hs_melanoma_10k?">this</a> 10x Genomics melanoma public dataset I ran Scrublet using
+standard parameters and a short script to detect doublets using the
+validation method described above. The scrublet method detected 160
+doublets while the validation method detected 168 doublets. The
+intersection of these sets of barcodes was 117. I found this to be much
+higher than I had expected, and I suppose that’s a good thing.</p>
+
+<p>The image below reiterates the overlap between the two methods of doublet
+detection. There seems to be one main region in the top left (cloud of red)
+which both methods classify as full of doublets. Around UMAP 1 coordinate 7 and 
+UMAP 2 coordinate 2 there are a couple small clusters with a few cell
+barcodes sprinkled in between. Scrublet labels some of them as doublets
+but the validation method does not. I think this brings up an important 
+limitation in the validation method. Because doublets are detected based
+on the presence of a TCR and BCR contig, only T cell and B cell can be
+detected. This also raises important questions about what the expected 
+upper limit for overlap between the two methods putative doublets is,
+since it must be below one. According to <a href="https://www.biolegend.com/en-us/blog/expected-cell-frequencies">Biolegend</a>, the expected cell frequencies for PBMCs are
+60-80% T cells and 5-15% B cells with natural killer cells, monocytes,
+and dendritic cells making up the remaining population. Given melanoma
+datasets are less common than PBMCs and possibly more variable, I’d like
+to redo this analysis on a more common sample such as PBMCs. This would
+allow further confidence in validation because when the underlying cell
+frequencies are known, the hypothetical upper bound on putative doublet 
+across methods can be better compared.</p>
+
+<p><img src="/assets/scrublet-vs-tcrbcr-doublets.png" alt="doublets" /></p>
+
+
+  </div><a class="u-url" href="/2020/11/29/validating-artifially-detected-doublets.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="footer-list">
+          <!---<li>austin hartman</li>---><li><a class="u-email" href="mailto:hartmana99@gmail.com">hartmana99@gmail.com</a></li><li><a href="https://github.com/austinhartman"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">austinhartman</span></a></li><!---<li><a href="/feed.xml"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#rss"></use></svg> <span>rss</span></a></li>--->
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-120366850-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  </body>
+
+</html>
