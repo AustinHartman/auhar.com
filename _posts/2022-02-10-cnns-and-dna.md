@@ -24,6 +24,6 @@ My first attempt at building a network didn't include any dropout layers, but th
 ### Limitations
 This sort of classification problem probably isn't useful, but I think the act of translating a classification problem into a network to answer it was useful. But still, it would be more useful to classify other things like whether or not some transcription factor will bind to a bit of DNA, or whether chromatin is open or closed. Maybe I’ll look at that another time. Another big weakness of this network is the architecture itself. A state of the art network would use far more convolutional layers to learn higher level patterns. As it stands, the network is only able to learn patterns centered around short k-mers where k represents the width of the convolutional filters used. Further, out of the box CNNs are not designed to model DNA strands. This is problematic because the reverse complement of any input sequence should have the same output. Often this is the case, but there is nothing constraining the network from diverging so on occasion it will.
 
-Here’s the code used to build it: [CNN gist][network-code]
+Code used to build it: [CNN gist][network-code]
 
 [network-code]: https://gist.github.com/AustinHartman/9cd9341ab716bb6316d413d0028226a8
